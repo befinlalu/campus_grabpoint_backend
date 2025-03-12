@@ -12,8 +12,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import os
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -88,7 +95,7 @@ WSGI_APPLICATION = 'grabpoint.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'grabpoint',
+        'NAME': 'campus',
         'USER': 'postgres',
         'PASSWORD': '559261',
         'HOST': 'localhost',  # Or your PostgreSQL server address

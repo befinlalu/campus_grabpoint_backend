@@ -2,6 +2,18 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import UserRegistrationSerializer, CustomTokenObtainPairSerializer
+from .models import Product
+from .serializers import ProductSerializer
+from rest_framework.filters import SearchFilter, OrderingFilter
+
+class ProductListView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = (SearchFilter, OrderingFilter)
+    search_fields = ['name', 'category__name']  # Fields to filter on
+    ordering_fields = ['price', 'name']  # Allow sorting by price or name
+    ordering = ['name']  # Default ordering by name
+
 
 class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserRegistrationSerializer
